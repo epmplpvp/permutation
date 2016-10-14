@@ -49,7 +49,7 @@ public class PermutationTest {
             Permutation instance = new Permutation();
             LinkedList<Integer> list = instance.getPermutation(pc);
             Object[] perm = list.toArray();
-            int[] expected = {3,2,1};
+            int[] expected = {1,2,3};
             
             assertEquals(expected[2], perm[2]);
             assertEquals(expected[1], perm[1]);
@@ -57,20 +57,20 @@ public class PermutationTest {
 
 //            next permutation            
             
-            pc = PermutationCode.generateNextCode(pc);
-            list = instance.getPermutation(pc);
+            PermutationCode pc1 = PermutationCode.generateNextCode(pc);
+            list = instance.getPermutation(pc1);
             perm = list.toArray();
-            int[] expected2 = {2,3,1};
+            int[] expected2 = {1,3,2};
             
             assertEquals(expected2[2], perm[2]);
             assertEquals(expected2[1], perm[1]);
             assertEquals(expected2[0], perm[0]);
             
 //            inverted permutation            
-            pc = PermutationCode.inverseCode(pc);
-            list = instance.getPermutation(pc);
+            pc1 = PermutationCode.inverseCode(pc);
+            list = instance.getPermutation(pc1);
             perm = list.toArray();
-            int[] expected3 = {1,3,2};
+            int[] expected3 = {3,2,1};
             
             assertEquals(expected3[2], perm[2]);
             assertEquals(expected3[1], perm[1]);

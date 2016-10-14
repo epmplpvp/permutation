@@ -19,7 +19,7 @@ public class PermutationCode {
     public PermutationCode(int degree){
         code = new LinkedList<>();
         for (int i = 0; i < degree; i++) {
-            code.add(1);
+            code.add(i+1);
         }
         this.degree = degree;
     }
@@ -40,7 +40,7 @@ public class PermutationCode {
         return result;
     }
     
-    public static PermutationCode generateNextCode(PermutationCode pCode){
+    private static PermutationCode generateNextCodeInverse(PermutationCode pCode){
         PermutationCode result = new PermutationCode(pCode);
         int i = 0;
         for (Iterator iterator = result.code.descendingIterator(); iterator.hasNext();) {
@@ -60,6 +60,13 @@ public class PermutationCode {
         }
         return result;
     }
+    
+    public static PermutationCode generateNextCode(PermutationCode pc){
+        PermutationCode result =  inverseCode(pc);
+        result = inverseCode(generateNextCodeInverse(result));
+        return result;
+    }
+            
     
     public boolean eqalsTo(PermutationCode pCode){
         boolean result = true;

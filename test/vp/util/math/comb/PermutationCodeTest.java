@@ -45,7 +45,7 @@ public class PermutationCodeTest {
         try {
             for (int i = 0; i < 21; i++) {
                 int actual = pc.code.get(i);
-                assertTrue(actual-1 == 0);
+                assertTrue(actual-1 == i);
             }
         } catch (Exception e) {
             fail("constructor fail");
@@ -57,7 +57,7 @@ public class PermutationCodeTest {
         try {
         PermutationCode  newCode = PermutationCode.inverseCode(pc);
             for (int i = 0; i < newCode.degree; i++) {
-               assertTrue(newCode.code.get(i) == i+1);
+               assertTrue(newCode.code.get(i) == 1);
             }
         } catch (Exception e) {
             fail("inverseCode fail");
@@ -83,9 +83,7 @@ public class PermutationCodeTest {
     public void testGenerateNextCode(){
         try {
         PermutationCode  nextCode = new PermutationCode(pc.degree);
-        nextCode.code.set(19, 2);
-        nextCode.code.set(20, 1);
-        pc.code.set(20,21);
+        nextCode.code.set(20, 20);      
         PermutationCode  newCode = PermutationCode.generateNextCode(pc);
         assertTrue(newCode.eqalsTo(nextCode));
         } catch (Exception e) {
