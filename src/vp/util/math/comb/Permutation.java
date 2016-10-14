@@ -15,15 +15,17 @@ import java.util.List;
  */
 public class Permutation {
    public LinkedList<Integer> getPermutation(PermutationCode pc){
-       LinkedList<Integer> result = new LinkedList<Integer>();
-       int counter = 1;
-       for (Iterator iterator = pc.code.iterator(); iterator.hasNext();) {
-           Integer next = (Integer)iterator.next();
+       LinkedList<Integer> result = new LinkedList<>();
+       int counter;
+       counter = 1;
+       for (Integer next : pc.code) {
            result.add(next - 1, counter);
            counter++; 
        }
        return result;
    }
+   
+   
    
    public List permuteList(List list, PermutationCode pc){
        List result = new LinkedList();
