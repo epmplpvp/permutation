@@ -32,7 +32,7 @@ public class Permutation {
        LinkedList<Integer> permutationOrigin = getPermutation(pc);
        for (Iterator iterator = permutationOrigin.iterator(); iterator.hasNext();) {
            Integer next = (Integer)iterator.next();
-           result.add(list.get(next-1));
+           result.add(next-1, list.get(next-1));
        }
        return list;
    }

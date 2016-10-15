@@ -6,6 +6,7 @@
 package vp.util.math.comb;
 
 import java.util.LinkedList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -79,6 +80,36 @@ public class PermutationTest {
         }
         catch (Exception e){
             fail("Initial permutation failed ");
+        }
+    }
+    
+    @Test
+    public void testPermuteList() {
+        try{
+        LinkedList<String> list = new LinkedList<>();
+        list.add("one");
+        list.add("two");
+        list.add("three");
+        list.add("four");
+        
+        PermutationCode pc = new PermutationCode(list.size());
+        
+        Permutation permutation = new Permutation();
+        List actual = permutation.permuteList(list, pc);
+        assertEquals(actual.get(0), list.get(0));
+        assertEquals(actual.get(1), list.get(1));
+        assertEquals(actual.get(2), list.get(2));
+        assertEquals(actual.get(3), list.get(3));
+        
+        PermutationCode incPc = PermutationCode.inverseCode(pc);
+        List actual2 = permutation.permuteList(list, incPc);
+        assertEquals(actual.get(0), list.get(3));
+        assertEquals(actual.get(1), list.get(2));
+        assertEquals(actual.get(2), list.get(1));
+        assertEquals(actual.get(3), list.get(0));
+        }
+        catch(Exception ex){
+            fail("permute list fail");
         }
     }
     
