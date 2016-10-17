@@ -47,7 +47,7 @@ public class PermutationTest {
          try{
 //             Initial permutation
             PermutationCode pc = new PermutationCode(3);
-            Permutation instance = new Permutation();
+            Permutation instance = new Permutation(pc);
             LinkedList<Integer> list = instance.getPermutation(pc);
             Object[] perm = list.toArray();
             int[] expected = {1,2,3};
@@ -94,15 +94,15 @@ public class PermutationTest {
         
         PermutationCode pc = new PermutationCode(list.size());
         
-        Permutation permutation = new Permutation();
-        List actual = permutation.permuteList(list, pc);
+        PermutationIntf permutation = PermutationFactory.getInitialPermutation(pc.degree);
+        List actual = permutation.permuteList(list);
         assertEquals(actual.get(0), list.get(0));
         assertEquals(actual.get(1), list.get(1));
         assertEquals(actual.get(2), list.get(2));
         assertEquals(actual.get(3), list.get(3));
         
-        PermutationCode incPc = PermutationCode.inverseCode(pc);
-        List actual1 = permutation.permuteList(list, incPc);
+        PermutationIntf invPermutation = permutation.inverse();
+        List actual1 = invPermutation.permuteList(list);
         assertEquals(actual1.get(3), list.get(0));
         assertEquals(actual1.get(2), list.get(1));
         assertEquals(actual1.get(1), list.get(2));

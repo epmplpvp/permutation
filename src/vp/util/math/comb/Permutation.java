@@ -12,8 +12,22 @@ import java.util.List;
  *
  * @author venzipetkov
  */
-public class Permutation {
-   public LinkedList<Integer> getPermutation(PermutationCode pc){
+
+
+class Permutation implements PermutationIntf {
+   
+    private PermutationCode pc;
+    
+    public Permutation(int n){
+        this.pc = new PermutationCode(n);
+    }
+    
+    public Permutation(PermutationCode pc){
+        this.pc = pc;
+    }
+    
+    
+    public LinkedList<Integer> getPermutation(PermutationCode pc){
        LinkedList<Integer> result = new LinkedList<>();
        int counter;
        counter = 1;
@@ -22,13 +36,33 @@ public class Permutation {
            counter++; 
        }
        return result;
-   }
+    }
    
    
    
    public List permuteList(List list, PermutationCode pc){
        List result = new LinkedList();
        LinkedList<Integer> permutationOrigin = getPermutation(pc);
+       permutationOrigin.forEach((next) -> {
+           result.add( list.get(next-1));
+       });
+       return result;
+   }
+   
+   public Permutation getNext(){
+       Permutation newPerm = new Permutation(PermutationCode.generateNextCode(this.pc));
+       return newPerm;
+   }
+   
+   public Permutation inverse(){
+       Permutation newPerm = new Permutation(PermutationCode.inverseCode(this.pc));
+       return newPerm;
+   }
+   
+    @Override
+   public List permuteList(List list){
+       List result = new LinkedList();
+       LinkedList<Integer> permutationOrigin = getPermutation(this.pc);
        permutationOrigin.forEach((next) -> {
            result.add( list.get(next-1));
        });
