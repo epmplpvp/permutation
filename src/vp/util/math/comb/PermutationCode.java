@@ -13,67 +13,66 @@ import java.util.LinkedList;
  * @author venzipetkov
  */
 public class PermutationCode {
+
     public LinkedList<Integer> code;
     public int degree;
-    
-    public PermutationCode(int degree){
+
+    public PermutationCode(int degree) {
         code = new LinkedList<>();
         for (int i = 0; i < degree; i++) {
-            code.add(i+1);
+            code.add(i + 1);
         }
         this.degree = degree;
     }
-    
+
     // copy constructor
-    public PermutationCode(PermutationCode pCode){
-        code = (LinkedList<Integer>)pCode.code.clone();
+    public PermutationCode(PermutationCode pCode) {
+        code = (LinkedList<Integer>) pCode.code.clone();
         this.degree = pCode.degree;
     }
-    
-    
-    public static PermutationCode inverseCode(PermutationCode pCode){
+
+    public static PermutationCode inverseCode(PermutationCode pCode) {
         PermutationCode result = new PermutationCode(pCode.degree);
         for (int i = 0; i < pCode.code.size(); i++) {
             int item = pCode.code.get(i);
-            result.code.set(i, i - item +2);
+            result.code.set(i, i - item + 2);
         }
         return result;
     }
-    
-    private static PermutationCode generateNextCodeInverse(PermutationCode pCode){
+
+    private static PermutationCode generateNextCodeInverse(PermutationCode pCode) {
         PermutationCode result = new PermutationCode(pCode);
         int i = 0;
         for (Iterator iterator = result.code.descendingIterator(); iterator.hasNext();) {
-            Integer next = (Integer)iterator.next();
-            if (next < pCode.degree -i){
-                result.code.set(pCode.degree - i-1, next+1);
+            Integer next = (Integer) iterator.next();
+            if (next < pCode.degree - i) {
+                result.code.set(pCode.degree - i - 1, next + 1);
                 break;
-            }
-            else{
-                result.code.set(pCode.degree - i-1, 1);
-                result.code.set(pCode.degree-i-2, pCode.code.get(pCode.degree - i-2) +1);
-                if (result.code.get(pCode.degree - i-2) < pCode.degree -i -1)
+            } else {
+                result.code.set(pCode.degree - i - 1, 1);
+                result.code.set(pCode.degree - i - 2, pCode.code.get(pCode.degree - i - 2) + 1);
+                if (result.code.get(pCode.degree - i - 2) < pCode.degree - i - 1) {
                     break;
+                }
             }
-            
-        i++;        
+
+            i++;
         }
         return result;
     }
-    
-    public static PermutationCode generateNextCode(PermutationCode pc){
-        PermutationCode result =  inverseCode(pc);
+
+    public static PermutationCode generateNextCode(PermutationCode pc) {
+        PermutationCode result = inverseCode(pc);
         result = inverseCode(generateNextCodeInverse(result));
         return result;
     }
-            
-    
-    public boolean eqalsTo(PermutationCode pCode){
+
+    public boolean eqalsTo(PermutationCode pCode) {
         boolean result = true;
         for (int i = 0; i < pCode.code.size(); i++) {
             int item = pCode.code.get(i);
             int myItem = this.code.get(i);
-            result = result && item == myItem;      
+            result = result && item == myItem;
         }
         return result;
     }

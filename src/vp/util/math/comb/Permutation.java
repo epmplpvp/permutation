@@ -5,7 +5,6 @@
  */
 package vp.util.math.comb;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,10 +29,9 @@ public class Permutation {
    public List permuteList(List list, PermutationCode pc){
        List result = new LinkedList();
        LinkedList<Integer> permutationOrigin = getPermutation(pc);
-       for (Iterator iterator = permutationOrigin.iterator(); iterator.hasNext();) {
-           Integer next = (Integer)iterator.next();
+       permutationOrigin.forEach((next) -> {
            result.add( list.get(next-1));
-       }
+       });
        return result;
    }
 }

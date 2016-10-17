@@ -102,11 +102,11 @@ public class PermutationTest {
         assertEquals(actual.get(3), list.get(3));
         
         PermutationCode incPc = PermutationCode.inverseCode(pc);
-        List actual2 = permutation.permuteList(list, incPc);
-        assertEquals(actual2.get(3), list.get(0));
-        assertEquals(actual2.get(2), list.get(1));
-        assertEquals(actual2.get(1), list.get(2));
-        assertEquals(actual2.get(0), list.get(3));
+        List actual1 = permutation.permuteList(list, incPc);
+        assertEquals(actual1.get(3), list.get(0));
+        assertEquals(actual1.get(2), list.get(1));
+        assertEquals(actual1.get(1), list.get(2));
+        assertEquals(actual1.get(0), list.get(3));
         }
         catch(Exception ex){
             fail("permute list fail");
