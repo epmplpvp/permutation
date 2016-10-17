@@ -68,4 +68,18 @@ class Permutation implements PermutationIntf {
        });
        return result;
    }
+   
+   private boolean equalsTo(PermutationCode pc){
+       return this.pc.eqalsTo(pc);
+   }
+   
+   public boolean equalsTo(Permutation pi){
+       return pi.equalsTo(this.pc);
+   }
+   
+   public boolean equalsTo(PermutationIntf pi){
+       return ((Permutation)pi).equalsTo(this);
+   }
+   
+   
 }
