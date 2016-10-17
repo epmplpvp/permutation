@@ -11,6 +11,7 @@ package vp.util.math.comb;
  */
 public class PermutationFactory {
     
+    
     public static PermutationIntf getInitialPermutation(int n){
         return new Permutation(n);
     }

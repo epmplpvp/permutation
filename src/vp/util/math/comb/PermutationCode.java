@@ -13,7 +13,6 @@ import java.util.LinkedList;
  * @author venzipetkov
  */
 class PermutationCode {
-
     public LinkedList<Integer> code;
     public int degree;
 

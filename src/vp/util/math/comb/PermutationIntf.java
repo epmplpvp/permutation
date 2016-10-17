@@ -19,6 +19,8 @@ public interface PermutationIntf {
     
     PermutationIntf inverse();
     
+    
+    
     boolean equalsTo(PermutationIntf pi);
     
 }
