@@ -49,6 +49,7 @@ public class PermutationIntfTest {
     public void testPermuteList() {
         System.out.println("permuteList");
         List list = new ArrayList<String>();
+        // first 10 time nextPermutation
         for (int i = 0; i < 10; i++) {
             list.add("number:"+(String.valueOf(i+1)));
             permIf = permIf.getNext();
@@ -60,6 +61,9 @@ public class PermutationIntfTest {
         });
         assertEquals(list.get(8), result.get(7));
         assertEquals(list.get(7), result.get(8));
+        
+        // second inversed permutation
+        
         permIf = permIf.inverse();
         result = permIf.permuteList(list);
         System.out.println("\n Permutation inverse");
